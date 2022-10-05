@@ -2967,7 +2967,7 @@ void TextPage::addAttributsNode(xmlNodePtr node, IWord *word, TextFontStyleInfo 
     }
     primaryLR = checkPrimaryLR(word->chars);
     dumpFragment(text, word->len, uMap, stringTemp);
-    if (verbose) {
+    if (globalParams->getPrintCommands()) {
         printf("token : %s\n", stringTemp->getCString());
     }
 

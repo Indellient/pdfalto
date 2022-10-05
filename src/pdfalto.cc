@@ -46,7 +46,8 @@ static int firstPage = 1;
 static int lastPage = 0;
 static int filesCountLimit = 0;
 static GBool physLayout = gTrue;
-static GBool verbose = gFalse;
+static GBool verbose = gTrue;
+static GBool logPdf = gFalse;
 
 static char cfgFileName[256] = "";
 
@@ -117,6 +118,8 @@ static ArgDesc argDesc[] = {
                 "limit of asset files be extracted"},
         {"-q",             argFlag,   &quiet,           0,
                 "don't print any messages or errors"},
+        {"-log",           argFlag,   &logPdf,           0,
+                "print pdf raw pdf content and extracted tokens"},
         {"-v",             argFlag,   &printVersion,    0,
                 "print version info"},
         {"-h",             argFlag,   &printHelp,       0,
@@ -273,8 +276,13 @@ int main(int argc, char *argv[]) {
     }
 
     if (verbose) {
-        globalParams->setPrintCommands(gTrue);
+        globalParams->setPrintCommands(gFalse);
         cmd->append("-verbose ");
+    }
+
+    if (logPdf) {
+        globalParams->setPrintCommands(gTrue);
+        cmd->append("-log ");
     }
 
     // open PDF file
