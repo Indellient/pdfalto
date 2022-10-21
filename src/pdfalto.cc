@@ -48,6 +48,8 @@ static int filesCountLimit = 0;
 static GBool physLayout = gTrue;
 static GBool verbose = gFalse;
 
+static GBool logPdf = gFalse;
+
 static char cfgFileName[256] = "";
 
 static char XMLcfgFileName[256] = "";
