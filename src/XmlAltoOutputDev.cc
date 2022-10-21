@@ -7154,7 +7154,7 @@ void TextPage::dump(GBool noLineNumbers, GBool fullFontName, vector<bool> lineNu
                 //			    }
 
 
-                //add all extracted text to xml results 
+                //INDELLIENT add all extracted text to xml results 
                 xmlAddChild(nodeline, node);
                 nonEmptyLine = true;
 
