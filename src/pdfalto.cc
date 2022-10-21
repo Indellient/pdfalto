@@ -49,8 +49,6 @@ static GBool physLayout = gTrue;
 static GBool verbose = gTrue;
 static GBool logPdf = gFalse;
 
-static GBool logPdf = gFalse;
-
 static char cfgFileName[256] = "";
 
 static char XMLcfgFileName[256] = "";
