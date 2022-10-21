@@ -3324,7 +3324,7 @@ void TextPage::addAttributsNodeVerbose(xmlNodePtr node, char *tmp,
 }
 
 void TextPage::addAttributsNode(xmlNodePtr node, IWord *word, TextFontStyleInfo *fontStyleInfo, UnicodeMap *uMap,
-                                GBool fullFontName) :
+                                GBool fullFontName)
 {
     char *tmp;
     tmp = (char *)malloc(10 * sizeof(char));
