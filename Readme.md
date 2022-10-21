@@ -59,43 +59,15 @@ In addition to the [ALTO](https://github.com/altoxml/documentation/wiki) file de
 
 # Dependencies
 
-Dependencies can be recompiled by running this [script](https://github.com/kermitt2/pdfalto/blob/master/install_deps.sh)
-
-> ./install_deps.sh
-
-The script will download and build the dependencies unders `libs/` and the additional language support packages for xpdf under `languages/`. 
-
-If necessary, see [compiling dependencies procedures](Dependencies_INSTALL.md) for further details.
-
-##### Known issues 
-([issue 41](https://github.com/kermitt2/pdfalto/issues/41)) might occur while building, in this case you'll need to compile the dependencies before building pdflato.
+- For a detailed description of how to build/obtain the dependencies for the underlying executable please visit the main [PDF Alto Repository](https://github.com/kermitt2/pdfalto#dependencies).
+- Docker must be installed
 
 # Build
 
-* NOTE for windows : it's recommended to use Cygwin and install standard libraries (either for cland or gcc)
-> git clone https://github.com/kermitt2/pdfalto.git && cd pdfalto
+- For detailed instructions on how to build the underlying executable (used in the docker image) please visit the main [PDF Alto Repository](https://github.com/kermitt2/pdfalto#build).
 
-* Xpdf-4.03 is shipped as git submodule, to download it: 
+- To build a new docker image run the command `docker build -t pdfalto .` and then use the command `docker push pdfalto` to push to your desired location
 
-> git submodule update --init --recursive
-
-* Build pdfalto:
-
-> cmake .
-
-> make
-
-The executable `pdfalto` is generated in the root directory. Additionally, this will create a static library for xpdf-4.03 at the following path `xpdf-4.03/build/xpdf/lib/libxpdf.a` and all the libraries and their respective subdirectory. 
-
-To use the additional xpdf language support packages, the executable `pdfalto` comes with a config file `xpdfrc` and language resources installed under `languages/`. Both `xpdfrc` and `languages/` must be alongside the executable `pdfalto` to be used. To add `pdfalto` with these additional resources to a third party application (e.g. GROBID), move the executation together with these files: 
-
-```
-lopez@work:~$ ls my_pdfalto/
-languages  pdfalto  xpdfrc
-```
-
-##### Known issues 
-([issue #135](https://github.com/kermitt2/pdfalto/issues/135)) on macOS "fontconfig.h file not found" might occur while building, see described workaround.
 
 # Future work
 

@@ -3348,9 +3348,9 @@ void TextPage::addAttributsNode(xmlNodePtr node, IWord *word, TextFontStyleInfo 
     primaryLR = checkPrimaryLR(word->chars);
     dumpFragment(text, word->len, uMap, stringTemp);
 
-    // if (globalParams->getPrintCommands()) {
-    printf("token : %s\n", stringTemp->getCString());
-    // }
+    if (globalParams->getPrintCommands()) {
+        printf("token : %s\n", stringTemp->getCString());
+    }
 
     gfree(text);
 
@@ -7153,33 +7153,27 @@ void TextPage::dump(GBool noLineNumbers, GBool fullFontName, vector<bool> lineNu
                 //				    xmlNewProp(nodeline, (const xmlChar*)ATTR_HIGHLIGHT,(const xmlChar*)"yes");
                 //			    }
 
-                printf("testatea :\n");
-                // if (!word->getLineNumber())
-                // {
-                    xmlAddChild(nodeline, node);
-                    nonEmptyLine = true;
 
-                    if (wordI < line1->words->getLength() - 1 and (word->spaceAfter == gTrue))
-                    {
-                        xmlNodePtr spacingNode = xmlNewNode(NULL, (const xmlChar *)TAG_SPACING);
-                        spacingNode->type = XML_ELEMENT_NODE;
-                        snprintf(tmp, sizeof(tmp), ATTR_NUMFORMAT, (nextWord->xMin - word->xMax));
-                        xmlNewProp(spacingNode, (const xmlChar *)ATTR_WIDTH,
-                                   (const xmlChar *)tmp);
-                        snprintf(tmp, sizeof(tmp), ATTR_NUMFORMAT, (word->yMin));
-                        xmlNewProp(spacingNode, (const xmlChar *)ATTR_Y,
-                                   (const xmlChar *)tmp);
-                        snprintf(tmp, sizeof(tmp), ATTR_NUMFORMAT, (word->xMax));
-                        xmlNewProp(spacingNode, (const xmlChar *)ATTR_X,
-                                   (const xmlChar *)tmp);
+                //add all extracted text to xml results 
+                xmlAddChild(nodeline, node);
+                nonEmptyLine = true;
 
-                        xmlAddChild(nodeline, spacingNode);
-                    }
-                // }
-                // else
-                // {
-                //     printf("not adding node to line :\n");
-                // }
+                if (wordI < line1->words->getLength() - 1 and (word->spaceAfter == gTrue))
+                {
+                    xmlNodePtr spacingNode = xmlNewNode(NULL, (const xmlChar *)TAG_SPACING);
+                    spacingNode->type = XML_ELEMENT_NODE;
+                    snprintf(tmp, sizeof(tmp), ATTR_NUMFORMAT, (nextWord->xMin - word->xMax));
+                    xmlNewProp(spacingNode, (const xmlChar *)ATTR_WIDTH,
+                            (const xmlChar *)tmp);
+                    snprintf(tmp, sizeof(tmp), ATTR_NUMFORMAT, (word->yMin));
+                    xmlNewProp(spacingNode, (const xmlChar *)ATTR_Y,
+                              (const xmlChar *)tmp);
+                    snprintf(tmp, sizeof(tmp), ATTR_NUMFORMAT, (word->xMax));
+                    xmlNewProp(spacingNode, (const xmlChar *)ATTR_X,
+                             (const xmlChar *)tmp);
+
+                    xmlAddChild(nodeline, spacingNode);
+                }
 
                 if (!fontStyleInfo->isSuperscript() && !fontStyleInfo->isSubscript())
                 {
