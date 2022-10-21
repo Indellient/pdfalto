@@ -7154,8 +7154,8 @@ void TextPage::dump(GBool noLineNumbers, GBool fullFontName, vector<bool> lineNu
                 //			    }
 
                 printf("testatea :\n");
-                if (!word->getLineNumber())
-                {
+                // if (!word->getLineNumber())
+                // {
                     xmlAddChild(nodeline, node);
                     nonEmptyLine = true;
 
@@ -7175,11 +7175,11 @@ void TextPage::dump(GBool noLineNumbers, GBool fullFontName, vector<bool> lineNu
 
                         xmlAddChild(nodeline, spacingNode);
                     }
-                }
-                else
-                {
-                    printf("not adding node to line :\n");
-                }
+                // }
+                // else
+                // {
+                //     printf("not adding node to line :\n");
+                // }
 
                 if (!fontStyleInfo->isSuperscript() && !fontStyleInfo->isSubscript())
                 {
